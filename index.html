@@ -24,7 +24,10 @@
 			}
 
 			#word-container {
-				grid-template-columns: repeat(auto-fit, 50%);
+				display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 500px;
 			}
 
 			#word-container li {
@@ -35,6 +38,7 @@
 					1.5rem
 				);
 				text-transform: uppercase;
+        width: fit-content;
 			}
 
 			.dropdown-item {
@@ -108,7 +112,7 @@
 								</button>
 								<ul class="dropdown-menu">
 									<li id="default-filter">
-										<a class="dropdown-item">Default</a>
+										<a class="dropdown-item">Alphabetical Order</a>
 									</li>
 									<li id="pangram-filter">
 										<a class="dropdown-item">Pangrams</a>
@@ -153,7 +157,7 @@
 							</div>
 						</div>
 						<div class="w-100">
-							<ul id="word-container" class="py-3 d-grid m-auto"></ul>
+							<ul id="word-container" class="py-3"></ul>
 						</div>
 					</div>
 				</div>
