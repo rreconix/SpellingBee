@@ -7,12 +7,10 @@ async function findWords(letters, centerLetter) {
 	const words = (await getWords()).split("\n")
 
 	const re = new RegExp(
-		`^[${letters + centerLetter}]*${centerLetter}[${letters + centerLetter}]*$`,
+		`^(?=.{4,})[${letters + centerLetter}]*${centerLetter}[${letters + centerLetter}]*$`,
 		"i"
 	)
-	return words.filter((word) => {
-		return re.test(word) && word.length >= 4
-	})
+	return words.filter((word) => re.test(word))
 }
 
 async function getWords() {
