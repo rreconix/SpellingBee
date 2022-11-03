@@ -42,7 +42,7 @@ findWordsButton.addEventListener("click", async () => {
 
 function generateListItems(words) {
 	document.querySelector("#word-section").classList.remove("d-none")
-	document.querySelector("#words-found").textContent = words.length
+	document.querySelector("#words-found").textContent = (words.length) + (words.length > 1 ? " Words Found" : " Word Found")
 	wordContainer.innerHTML = ""
 	for (const word of words) {
 		const li = document.createElement("li")
