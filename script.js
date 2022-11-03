@@ -37,14 +37,12 @@ findWordsButton.addEventListener("click", async () => {
 		centerLetterInput.value
 	))
 
-	centerLetterInput.disabled = true
-	outerLetterInput.disabled = true
-
 	generateListItems(foundWords)
 })
 
 function generateListItems(words) {
 	document.querySelector("#word-section").classList.remove("d-none")
+	document.querySelector("#words-found").textContent = words.length
 	wordContainer.innerHTML = ""
 	for (const word of words) {
 		const li = document.createElement("li")
