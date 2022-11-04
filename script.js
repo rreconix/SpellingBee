@@ -7,7 +7,9 @@ async function findWords(letters, centerLetter) {
 	const words = (await getWords()).split("\n")
 
 	const re = new RegExp(
-		`^(?=.{4,})[${letters + centerLetter}]*${centerLetter}[${letters + centerLetter}]*$`,
+		`^(?=.{4,})[${letters + centerLetter}]*${centerLetter}[${
+			letters + centerLetter
+		}]*$`,
 		"i"
 	)
 	return words.filter((word) => re.test(word))
@@ -42,7 +44,8 @@ findWordsButton.addEventListener("click", async () => {
 
 function generateListItems(words) {
 	document.querySelector("#word-section").classList.remove("d-none")
-	document.querySelector("#words-found").textContent = (words.length) + (words.length > 1 ? " Words Found" : " Word Found")
+	document.querySelector("#words-found").textContent =
+		words.length + (words.length > 1 ? " Words Found" : " Word Found")
 	wordContainer.innerHTML = ""
 	for (const word of words) {
 		const li = document.createElement("li")
@@ -54,7 +57,7 @@ function generateListItems(words) {
 
 function isPangram(word, letters) {
 	return letters.every((letter) => {
-		return word.includes(letter)
+		return word.includes(letter.toLowerCase())
 	})
 }
 
