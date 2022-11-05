@@ -73,12 +73,12 @@ function isPangram(word, letters) {
 				break
 			case "pangram-filter":
 				generateListItems(
-					globalFoundWords.filter((word) =>
-						isPangram(word, [
+					globalFoundWords.filter((word) => {
+						return isPangram(word, [
 							...outerLetterInput.value,
 							...centerLetterInput.value,
 						])
-					)
+					})
 				)
 				break
 			case "size-down-filter":
