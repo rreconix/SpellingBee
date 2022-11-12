@@ -25,7 +25,6 @@ async function getWords() {
 
 ;[outerLetterInput, centerLetterInput].forEach((input) => {
 	input.addEventListener("input", () => {
-		console.log("s")
 		if (outerLetterInput.value.length + centerLetterInput.value.length == 7) {
 			findWordsButton.disabled = false
 		} else {
