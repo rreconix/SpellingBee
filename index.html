@@ -23,26 +23,45 @@
 				width: 100%;
 			}
 
-			#word-container {
-				display: flex;
-				flex-wrap: wrap;
-				flex-direction: column;
-				height: 500px;
+			#word-container > div {
+				margin-bottom: 1rem;
 			}
 
-			#word-container li {
-				font-size: 1rem;
-				font-size: clamp(
-					1rem,
-					0.868421052631579rem + 0.5263157894736842vw,
-					1.5rem
-				);
+			.word {
+				display: inline-block;
+				text-align: center;
+				border-radius: 100px;
+				border: 1px solid #eeeeee;
+				padding: 10px 15px;
+				margin: 0.5rem 0.5rem 0.5rem 0;
 				text-transform: uppercase;
-				width: fit-content;
+				text-decoration: none;
+				color: black;
 			}
 
-			.dropdown-item {
-				cursor: pointer;
+			.word.pangram{
+				background-color: #F2CD46;
+				border: none;
+			}
+
+			.word:hover{
+				color: black;
+			}
+
+			.title {
+				opacity: 0.4;
+				font-size: 14px;
+				color: #000000;
+				margin: 0.5rem 0;
+				font-weight: bold;
+			}
+
+			#center-letter-input, #outer-letter-input{
+				text-transform: uppercase;
+			}
+
+			#center-letter-input::placeholder, #outer-letter-input::placeholder{
+				text-transform: none;
 			}
 		</style>
 		<title>NYT Spelling Bee Solver</title>
@@ -107,89 +126,16 @@
 							Find words
 						</button>
 					</div>
-					<div class="mt-5 d-flex flex-column d-none" id="word-section">
-						<div class="d-flex">
-							<div class="dropdown">
-								<button
-									class="btn btn-secondary dropdown-toggle"
-									type="button"
-									data-bs-toggle="dropdown"
-									aria-expanded="false"
-								>
-									Filter words
-								</button>
-								<ul class="dropdown-menu">
-									<li id="default-filter">
-										<a class="dropdown-item">Alphabetical Order</a>
-									</li>
-									<li id="pangram-filter">
-										<a class="dropdown-item">Pangrams</a>
-									</li>
-									<li id="size-down-filter">
-										<a class="dropdown-item d-flex align-items-center ps-3">
-											<span class="pe-4">Size Descending</span>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="16"
-												height="16"
-												fill="currentColor"
-												class="bi bi-arrow-up ms-auto"
-												viewBox="0 0 16 16"
-											>
-												<path
-													fill-rule="evenodd"
-													d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-												/>
-											</svg>
-										</a>
-									</li>
-									<li id="size-up-filter">
-										<a class="dropdown-item d-flex align-items-center">
-											<span>Size Ascending</span>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="16"
-												height="16"
-												fill="currentColor"
-												class="bi bi-arrow-up ms-auto"
-												viewBox="0 0 16 16"
-											>
-												<path
-													fill-rule="evenodd"
-													d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-												/>
-											</svg>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="d-flex align-items-center fs-5">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									class="bi bi-dot"
-									viewBox="0 0 16 16"
-								>
-									<path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-								</svg>
-								<span id="words-found"></span>
-							</div>
-						</div>
-						<div class="w-100">
-							<ul id="word-container" class="py-3"></ul>
-							<!-- Footer -->
+					<div class="w-100 word-section">
+						<div id="word-container" class="py-4"></div>
+						<!-- Footer -->
 
-							<footer
-								class="fw-light d-flex justify-content-center w-100"
-							>
-								<div class="alert alert-danger" role="alert">
-									Some answers to the New York Times' Spelling Bee may not
-									appear using this website
-								</div>
-							</footer>
-						</div>
+						<footer class="fw-light d-flex justify-content-center w-100">
+							<div class="alert alert-danger" role="alert">
+								Some answers to the New York Times' Spelling Bee may not appear
+								using this website
+							</div>
+						</footer>
 					</div>
 				</div>
 			</div>

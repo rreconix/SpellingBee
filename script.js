@@ -25,34 +25,65 @@ async function getWords() {
 
 ;[outerLetterInput, centerLetterInput].forEach((input) => {
 	input.addEventListener("input", () => {
+		console.log("s")
 		if (outerLetterInput.value.length + centerLetterInput.value.length == 7) {
 			findWordsButton.disabled = false
+		} else {
+			findWordsButton.disabled = true
 		}
 	})
 })
 
-let globalFoundWords = []
-
 findWordsButton.addEventListener("click", async () => {
-	const foundWords = (globalFoundWords = await findWords(
+	const foundWords = await findWords(
 		outerLetterInput.value,
 		centerLetterInput.value
-	))
+	)
 
 	generateListItems(foundWords)
 })
 
 function generateListItems(words) {
-	document.querySelector("#word-section").classList.remove("d-none")
-	document.querySelector("#words-found").textContent =
-		words.length + (words.length > 1 ? " Words Found" : " Word Found")
+	document.querySelector(".word-section").classList.remove("d-none")
 	wordContainer.innerHTML = ""
-	for (const word of words) {
-		const li = document.createElement("li")
-		li.textContent = word
+	const variousLengths = getVariousLengths(words)
 
-		wordContainer.appendChild(li)
+	for (const length of variousLengths) {
+		const container = document.createElement("div")
+
+		const wordLengthHeader = document.createElement("div")
+		wordLengthHeader.className = "title"
+		wordLengthHeader.textContent = `${length} LETTER ANSWERS`
+
+		container.appendChild(wordLengthHeader)
+
+		wordContainer.appendChild(container)
 	}
+
+	for (const word of words.sort()) {
+		const a = document.createElement("a")
+		a.className =
+			"word" +
+			(isPangram(word, [
+				...outerLetterInput.value,
+				centerLetterInput.value,
+				...outerLetterInput.value,
+				centerLetterInput.value,
+			])
+				? " pangram"
+				: "")
+		a.textContent = word
+		a.href = `https://www.dictionary.com/browse/${word}`
+		a.target = "_blank"
+
+		const index = variousLengths.indexOf(word.length)
+		const container = [...wordContainer.children][index]
+		container.appendChild(a)
+	}
+}
+
+function getVariousLengths(words) {
+	return [...new Set(words.map((word) => word.length)).keys()].sort()
 }
 
 function isPangram(word, letters) {
@@ -60,37 +91,3 @@ function isPangram(word, letters) {
 		return word.includes(letter.toLowerCase())
 	})
 }
-
-;[...document.querySelector(".dropdown-menu").children].forEach((d_item) => {
-	d_item.addEventListener("click", () => {
-		const liText = d_item.firstElementChild.textContent
-
-		document.querySelector(".dropdown-toggle").textContent = liText
-
-		switch (d_item.id) {
-			case "default-filter":
-				generateListItems(globalFoundWords)
-				break
-			case "pangram-filter":
-				generateListItems(
-					globalFoundWords.filter((word) => {
-						return isPangram(word, [
-							...outerLetterInput.value,
-							...centerLetterInput.value,
-						])
-					})
-				)
-				break
-			case "size-down-filter":
-				generateListItems(
-					globalFoundWords.slice().sort((a, b) => b.length - a.length)
-				)
-				break
-			case "size-up-filter":
-				generateListItems(
-					globalFoundWords.slice().sort((a, b) => a.length - b.length)
-				)
-				break
-		}
-	})
-})
