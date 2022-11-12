@@ -53,7 +53,7 @@ function generateListItems(words) {
 
 		const wordLengthHeader = document.createElement("div")
 		wordLengthHeader.className = "title"
-		wordLengthHeader.textContent = `${length} LETTER ANSWERS`
+		wordLengthHeader.textContent = `${length} LETTER ANSWERS • ${words.filter(word => word.length == length).length}`
 
 		container.appendChild(wordLengthHeader)
 
