@@ -16,54 +16,7 @@
 			integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 			crossorigin="anonymous"
 		/>
-		<style>
-			body,
-			html {
-				height: 100%;
-				width: 100%;
-			}
-
-			#word-container > div {
-				margin-bottom: 1rem;
-			}
-
-			.word {
-				display: inline-block;
-				text-align: center;
-				border-radius: 100px;
-				border: 1px solid #eeeeee;
-				padding: 10px 15px;
-				margin: 0.5rem 0.5rem 0.5rem 0;
-				text-transform: uppercase;
-				text-decoration: none;
-				color: black;
-			}
-
-			.word.pangram{
-				background-color: #F2CD46;
-				border: none;
-			}
-
-			.word:hover{
-				color: black;
-			}
-
-			.title {
-				opacity: 0.4;
-				font-size: 14px;
-				color: #000000;
-				margin: 0.5rem 0;
-				font-weight: bold;
-			}
-
-			#center-letter-input, #outer-letter-input{
-				text-transform: uppercase;
-			}
-
-			#center-letter-input::placeholder, #outer-letter-input::placeholder{
-				text-transform: none;
-			}
-		</style>
+		<link rel="stylesheet" href="style.css">
 		<title>NYT Spelling Bee Solver</title>
 	</head>
 	<body>
@@ -102,6 +55,7 @@
 									id="outer-letter-input"
 									placeholder="Outer letters"
 									maxlength="6"
+									autocomplete="off"
 									aria-label="Outside letters"
 								/>
 							</div>
@@ -112,6 +66,7 @@
 									class="form-control"
 									id="center-letter-input"
 									placeholder="Center letter"
+									autocomplete="off"
 									aria-label="Center letter"
 									maxlength="1"
 								/>
@@ -126,16 +81,16 @@
 							Find words
 						</button>
 					</div>
-					<div class="w-100 word-section">
-						<div id="word-container" class="py-4"></div>
+					<div class="w-100 answer-section mt-3">
+						<div class="section-container" class="py-4"></div>
 						<!-- Footer -->
 
-						<footer class="fw-light d-flex justify-content-center w-100">
+						<!-- <footer class="fw-light d-flex justify-content-center w-100">
 							<div class="alert alert-danger" role="alert">
 								Some answers to the New York Times' Spelling Bee may not appear
 								using this website
 							</div>
-						</footer>
+						</footer> -->
 					</div>
 				</div>
 			</div>
