@@ -70,7 +70,7 @@ function generateListItems(words) {
 
 	const variousLengths = getVariousLengths(wordsWithoutPangram)
 	const formattedWords = new Map()
-	formattedWords.set("Pangrams", pangrams)
+	formattedWords.set(("Pangram" + (pangrams.length == 1 ? "" : "s")), pangrams)
 
 	for (const length of variousLengths) {
 		if (formattedWords.get(length) == undefined) {
