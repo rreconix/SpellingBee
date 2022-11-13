@@ -18,7 +18,11 @@ html {
 	padding: 1.25rem;
 	border: 1px solid rgb(221, 221, 221);
 	margin-bottom: 1rem;
-    overflow: hidden;
+  overflow: hidden;
+}
+
+.section:last-of-type{
+  margin:0;
 }
 
 .section::before {
